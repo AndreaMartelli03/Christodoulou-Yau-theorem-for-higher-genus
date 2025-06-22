@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{article}[12pt]
 
 %----- Math ---------------------------------------------
 \usepackage{amsmath}   
@@ -119,12 +119,21 @@ It holds the following theorem, proved by D. Christodoulou and S.T. Yau:
     \end{equation}
     In particular, if \((M,g)\) has positive scalar curvature \(R\ge 0\), the Hawking mass of \(\Sigma\) is non-negative:
     \[
-        m_{\mathrm{Haw}}(\Sigma) \coloneq \sqrt{\frac{|\Sigma|}{16\pi}}\left( 16\pi -\int_\Sigma H^2 \dif \sigma \right) \ge 0.
+        m_{\mathrm{Haw}}(\Sigma) \coloneq \sqrt{\frac{|\Sigma|}{16\pi}}\left( 1 - \frac{1}{16\pi}\int_\Sigma H^2 \dif \sigma \right) \ge 0.
     \]
 \end{thm}
-This result is important because CMC stable spheres often appears in General Relativity as boundary of black holes, as in the Schwarzschild space. Then one can use the Hawking mass to define a total mass of the space. Using this theorem, if the ambient manifold \(M\) has non negative scalar curvature, the total mass will be non negative. 
+The importance of this result is due to a theorem of Huisken and Yau \cite{HuiskenYau_CenterMass}: every asymptotically flat\footnote{A complete 3-manifold \((M,g)\) is \emph{asymptotically flat} if there is a compact subset \(K \subset M\) and a diffeomorphism \(\vp \colon \R^3 \setminus B_1(0) \to M\setminus K\) such that if \(g_{ij} \dif x^i\dif x^j = \vp^*g\) on \(\R^3\setminus B_1(0)\), then
+\[
+    g_{ij}= \left(1+ \frac{2m}{r} \right) \delta_{ij} + O(r^{-2}).
+\]
+} 3-manifold \((M,g)\) admits a foliation of the asymptotically flat end by CMC-stable 2-spheres \(\{\Sigma_r\}_{r>R}\). Then we can use the Hawking mass to give a notion of total mass of \((M,g)\):
+\[
+    \mathrm{mass}_{\mathrm{Haw}}(M) = \sup_{r>R} m_{\mathrm{Haw}}(\Sigma_r).
+\]
+Using this theorem, if the scalar curvature \(R_g \ge 0\) is non-negative, then the total mass will be non-negative. 
 
-However, the proof can be generalized to orientable surfaces \(\Sigma\) of any genus. The trick is to borrow the Brill-Noether theorem from algebraic geometry to construct a conformal branched map to the sphere \(\Sp^2\) with degree bound from above by the genus. Remarkably, at the end the the Gauss-Bonnet term cancels out with this upper bound, giving essentially the same result of the sphere:
+In this note, we extend the above theorem to orientable surfaces \(\Sigma\) of any genus. 
+
 \begin{thm}\label{thm: Christodoulou-Yau for higher genus}
     Let \((M^3,g)\) be a Riemannian 3-manifold and let \(\Sigma^2 \subset (M^3,g)\) be volume-preserving stable CMC surface of genus \(k\). Then
     \begin{itemize}
@@ -139,223 +148,177 @@ However, the proof can be generalized to orientable surfaces \(\Sigma\) of any g
     \end{itemize}
 \end{thm}
 
-This is not exactly what is expected. Indeed one could expect to see exactly the critical bounds for the Willmore inequality. In 1965 Willmore showed that round spheres are the only compact surfaces in \(\R^3\) that minimize the Willmore energy
-\[
-    W(\Sigma) = \int_\Sigma H^2 \dif \sigma,
-\]
-that is
-\[
-    \int_\Sigma H^2 \dif \sigma \ge 16\pi
-\]
-with equality if and only if \(\Sigma\) is a round sphere in \(\R^3\). This is perfectly aligned with Christodoulou-Yau inequality, as in \(\R^3\) the only CMC spheres are the round spheres and thus the left hand side of \eqref{eq: CY eq} is 0. 
-
-Let us try to minimize the Willmore energy among compact surfaces of genus at least \(1\). In 2014, Marques and Neves \cite{MarquesNeves_Willmore} proved that for every surface \(\Sigma \subset \R^3\) with genus at least 1,
-\[
+In 2014, Marques and Neves \cite{MarquesNeves_Willmore} proved that for every surface \(\Sigma \subset \R^3\) with genus at least 1,
+\begin{equation}\label{eq: Willmore}
     \int_\Sigma H^2 \ge 8\pi^2
-\]
-with equality if and only if \(\Sigma\) is a torus obtained by stereographic projecting the Clifford torus \(\S^1(1/\sqrt{2}) \times \S^1(1/\sqrt{2})\) of the round 3-sphere \(\Sp^3\). However, even if we fix the genus to be 1, in Theorem~\ref{thm: Christodoulou-Yau for higher genus} we lost the previous symmetry.
-\\
+\end{equation}
+with equality if and only if \(\Sigma\) is a torus obtained by stereographic projecting the Clifford torus \(\Sp^1(1/\sqrt{2}) \times \Sp^1(1/\sqrt{2})\) of the round 3-sphere \(\Sp^3\). 
 
-I added a small appendix about the Brill-Noether theorem. Actually, it is not the statement that one can usually find in Algebraic Geometry textbooks, but it is the result of an office hour with professor Roberto Pignatelli. However, I take responsibility for any mistake.
-\\
+As an immediate consequence of Theorem~\ref{thm: Christodoulou-Yau for higher genus},
+\begin{cor}
+    There are no CMC-stable surfaces of genus \(k\ge 1\) in the Euclidean space \(\R^3\).
+\end{cor}
+\begin{proof}
+    Suppose by contradiction that there exists a CMC-stable surface \(\Sigma \subset \R^3\) of genus \(k\ge 1\). Suppose that \(k\) is odd. Then by \eqref{eq: Willmore} and Theorem~\ref{thm: Christodoulou-Yau for higher genus},
+    \begin{align*}
+        8\pi^2 &\le \int_\Sigma H^2 \ \dif \sigma \le -\frac{2}{3}\int_\Sigma |h^\circ|^2 \ \dif \sigma + \frac{64\pi}{3} \\
+        & \le \frac{64\pi}{3},
+    \end{align*}
+    a contradiction. If \(k\) is even, in the same way we can get \(8\pi^2 \le 16\pi\), a contradiction. \qedhere
+    
+\end{proof}
+
+
+
 
 \section{Christodoulou-Yau theorem for higher genus}
-The proof of Theorem~\ref{thm: Christodoulou-Yau} uses a balancing trick to choose a good average-free test function. We can make this trick work also for orientable closed surfaces of higher genus.
 
-The first step is to move the problem to a sphere ‘‘up to a multiplicity''. We will exploit this result from the theory of Riemann  surfaces (see Theorem~\ref{thm: Brill-Noether}):
-\begin{thm}
-	If \(\Sigma\) is a closed Riemann surface of genus \(k\), then there exists a holomorphic map\footnote{If we endow with Riemannian structures (\(\Sp^2\) has the round metric), \(\Phi\) is a branched conformal map, i.e. a conformal map that is a covering of degree \(\deg(\Phi)\) away from a finitely many points.} \(\Phi \colon \Sigma \to \C\Pbb^1 \cong \Sp^2\) with degree at most
-	\begin{equation}\label{eq: Riemann-Roch bounds on the degree}
-		\deg(\Phi) \leq \begin{cases}
+The proof of Theorem~\ref{thm: Christodoulou-Yau for higher genus} is an adaptation of the proof of Theorem~\ref{thm: Christodoulou-Yau}. Specifically, the idea is to use the CMC-stability inequality with zero-average test functions, that will be constructed using the Hersch's trick together with the following result.
+
+\begin{thm}\label{thm: corollary of Brill-Noether}
+	If \((\Sigma,g)\) is a closed (compact and without boundary) oriented surface of genus \(k\), then there exists a branched conformal covering map
+    \[
+        \Phi \colon (\Sigma,g) \to (\Sp^2,g_{\Sp^2})
+    \]
+    with degree 
+	\begin{equation}\label{eq: Brill-Noether bounds on the degree}
+		\deg(\Phi) = \begin{cases}
 			1+k/2 & \text{if }k \text{ is even}\\
 			3/2+ k/2 &\text{if }k \text{ is odd}.
 		\end{cases}
 	\end{equation}
 \end{thm}
 
-This means that
-\[
-	\Phi^* g_0 = \mu^2g
-\]
-for some function \( \mu \colon \Sigma \to \R\). Then we have natural maps
-\[
-\begin{tikzcd}
-	\Sigma \ar[dr, dashed] \arrow[r, "\Phi"] &\Sp^2 \ar[d, "x^i"]\\
-	& \R
-\end{tikzcd}
-\]
-where \(x^i \colon \Sp^2 \subset \R^3 \to \R\) is the \(i\)-th coordinate function of \(\R^3\). In particular, 
-\begin{equation}\label{eq: sum (xi.Phi)^2=1}
-	\sum_{i=1}^3 (x^i \circ \Phi)^2=1
-\end{equation}
-at every point. 
+\begin{defi}
+    A \emph{branched conformal covering map} is a smooth map
+    \[
+    \Phi \colon (\Sigma_1,g_1) \to (\Sigma_2,g_2)
+    \] 
+    between oriented closed surfaces such that there is a finite set \(\Gamma\subset \Sigma_1\) (whose points are called \emph{branch points}) with finite image and 
+    \[
+    \Phi \colon (\Sigma_1\setminus\Gamma,g_1) \to (\Sigma_2\setminus \Phi(\Gamma),g_2)
+    \] 
+    is a conformal covering map.  
+\end{defi}
 
-For simplicity, suppose that \(\Sigma \cong \Sp^2\) is a sphere, so that actually we can choose \(\Phi\) as a diffeomorphism with the standard sphere of \(\R^3\), which is conformal because all 2-surfaces are locally conformal, and has \(\deg(\Phi)=1\).
-\begin{lemma}\label{lem: energy and conformal diffeo}
-	Let \((\Sigma^2,g)\) be a Riemannian 2-manifold. The energy 
-    \[
-        E_g(u) = \int_\Sigma |\nabla_g u |_g^2 \ \dif \sigma_g
-    \]
-    of a function \(u \in C^1(\Sigma)\) does not change under conformal diffeomorphisms. In other words, if \(\phi \colon (\widetilde{\Sigma},\widetilde{g})\to (\Sigma,g)\) is a conformal diffeomorphism,
-    \[
-        E_g(u) = E_{\widetilde{g}}(u \circ \phi).
-    \]
-\end{lemma}
-\begin{proof}
-	Observe that
-    \[
-        E_{\widetilde{g}}(u \circ \phi) = E_{\phi^* \widetilde{g}} (u),
-    \]
-    so we can actually assume that \(\widetilde{\Sigma}=\Sigma\) and \(\widetilde{g}=\lambda g\) for some positive smooth function \(\lambda \colon \Sigma \to (0,+\infty)\). On some coordinates \(x^i\)
-    \begin{align*}
-        \dif \sigma_{\widetilde{g}} &= \sqrt{\det(\widetilde{g}_{ij})} \dif x^1 \wedge \dif x^2\\
-        &= \sqrt{\det(\lambda{g}_{ij})} \dif x^1 \wedge \dif x^2\\
-        &= \lambda \sqrt{\det({g}_{ij})} \dif x^1 \wedge \dif x^2 = \lambda \dif \sigma_g.
-    \end{align*}
-    On the other hand,
-    \[
-        |\nabla_g u|_g^2 = g_{ij}(\nabla_g u)^i (\nabla_g u)^j = g_{ij}g^{ik}g^{j\ell}\frac{\de u}{\de x^k}\frac{\de u}{\de x^\ell},
-    \]
-    thus
-    \[
-        |\nabla_{\widetilde{g}} u|^2_{\widetilde{g}} = \frac{1}{\lambda} |\nabla_g u|_g^2.
-    \]
-    Putting everything together,
-    \[
-        E_{\phi^* \widetilde{g}} (u) = \int_\Sigma \frac{1}{\lambda} |\nabla_g u|_g^2 \lambda \dif \sigma_g = E_g(u). \qedhere
-    \]
-\end{proof}
-Therefore we have:
-\begin{equation*}
-	\int_\Sigma |\nabla_g (x^i \circ \Phi)|_g^2 = \int_{\Sp^2} |\nabla_{g_0} x^i |_{g_0}^2.
-\end{equation*}
-In the general case, consider the smooth 2-form
-\[
-    \omega = |\nabla_{g_0} x^i|_{g_0}^2 \dif \sigma_{g_0} \in \Omega^2(\Sp^2)
-\]
-where \(\dif \sigma_{g_0}\) is the volume element of the round sphere \((\Sp^2,g_0)\). Then observe that\footnote{
-The \emph{Riemannian volume element} \(\dif \mu\) of an orientable Riemannian manifold \((M,g)\) is defined as the unique \(n\)-form \(\dif \mu\) (the notation mimics the notation for integral with respect to a measure, but there is no form \(\mu\) and \(\dif \mu\) is not a differential of anything) such that 
-\[
-    (\dif \mu)_p(E_1,\dots,E_n)=1
-\]
-for any positively oriented orthonormal basis \(E_1,\dots,E_n\) of \((T_pM,g_p)\).
-}
-\[
-    \Phi^*(\dif \sigma_{g_0}) = \dif \sigma_{\Phi^*g_0}
-\]
-and 
-\[
-    |(\nabla_{g_0} x^i)\circ \Phi|_{g_0}^2 = |\nabla_{\Phi^*g_0} (x^i \circ \Phi)|_{\Phi^* g_0}^2
-\]
-essentially by definition of pullback metric, on every point in which \(\Phi\) is a local diffeomorphism (at every point except at branch points).
-Therefore
-\[
-    \Phi^* \omega = |\nabla_{\Phi^*g_0} (x^i \circ \Phi)|_{\Phi^* g_0}^2 \dif \sigma_{\Phi^*g_0}
-\]
-and since \(g\) and \(\Phi^*g_0\) are conformal metrics, by Lemma~\ref{lem: energy and conformal diffeo}
-\begin{align}\label{eq: Hersch - conformal invariance}
-    \int_\Sigma |\nabla_g (x^i \circ \Phi)|_g^2 \ \dif \sigma_g &= \int_\Sigma \nabla_{\Phi^*g_0} (x^i \circ \Phi)|_{\Phi^* g_0}^2 \dif \sigma_{\Phi^*g_0} \nonumber\\
-    &= \int_\Sigma \Phi^* \omega =\deg(\Phi) \int_\Sigma \omega \nonumber\\
-    &= \deg(\Phi) \int_\Sigma |\nabla_{g_0} x^i|_{g_0}^2 \dif \sigma_{g_0}.
-\end{align}
+The proof of Theorem~\ref{thm: corollary of Brill-Noether} is a consequence of the Brill-Noether Theorem~\ref{thm: Brill-Noether}, and it is postponed to the appendix of this note.
 
-Moreover, 
-\[
-	\nabla_{g_0} x^i = (\nabla^{\R^3} x^i)^\top = e_i^\top
-\]
-so
-\[
-	\sum_{i=1}^3 |\nabla_{g_0} x^i|^2 = \sum_{i=1}^3 (1-(x\cdot e_i)^2) = 3- |x|^2 = 2.
-\]
-Then, putting together this computation with \eqref{eq: Hersch - conformal invariance}, we get
-\begin{equation}\label{eq: energy computation}
-	\sum_{i=1}^3 \int_\Sigma |\nabla_\Sigma (x^i \circ \Phi)|^2 = \deg(\Phi) \sum_{i=1}^3\int_{\Sp^2}|\nabla_{\Sp^2} x^i|^2 = 8\pi \deg(\Phi).
-\end{equation}
+Recall the so-called Hersch's balancing trick.
 
-Now we perform the so called Hersch's balancing trick. Given any \(\vp_1 \in L^1(\Sigma)\), possibly post-composing with a conformal diffeomorphism of \((\Sp^2,g_0)\), i.e. replacing \(\Phi\) with \(\gamma \circ \Phi\) for some \(\gamma \in \mathrm{Conf}(\Sp^2,g_0)\), we can achieve that
-\begin{equation*}
-	\int_{\Sigma}(x^i \circ \Phi) \vp_1 = 0 \qquad i=1,2,3.
-\end{equation*}
-
-Let us sketch a proof of this fact. The group \(\mathrm{Conf}(\Sp^2,g_0)\) of conformal diffeomorphisms of the round sphere contains \(B^3_1(0) = B^3\) as a subgroup as follows: \(0\) is the identity, while any other point \(a = ru \in B^3\), with \(r \in [0,1)\) and \(u \in \Sp^2\), is identified with the dilation of \(\Sp^2\) fixing the opposite poles \(u\) and \(-u\) and dilating out from \(-u\) by a factor \((1-r)^{-1}\), namely
-\[
-	x \mapsto \begin{cases}
-		\pi_{-u}^{-1}\left(\frac{1}{1-r}\pi_{-u}(x) \right) &x\neq -u \\
-		-u & x= -u
-	\end{cases}
-\]
-for each \(x \in \Sp^2\), where \(\pi_v \colon \Sp^2 \to \C\) is the stereographic projection from \(v\in \Sp^2\). Moreover, note that as \(\gamma \to u \in \de B^3\)
-\begin{equation}\label{eq: Hersch - key prop for extension to boundary}
-	\gamma(x) \to u
-\end{equation}
-for each \(x \in \Sp^2\).
-Now consider the map
-\begin{align*}
-	\Psi \colon B^3 \subset \mathrm{Conf}(\Sp^2,g_0) &\to \R^3 
-\end{align*}
-defined by 
-\begin{equation*}
-	\Psi(\gamma) \coloneq \frac{1}{\int_\Sigma \vp_1} \int_\Sigma (\gamma \circ \Phi)\vp_1 = \frac{1}{\int_\Sigma \vp_1 }\left( \int_\Sigma (x^i \circ \gamma \circ \Phi)\vp_1 \right)_{i=1,2,3}
-\end{equation*}
-for any \(\gamma \in B^3\). Clearly \(\Psi\) is a continuous function.
-We need to show that there exists \(\gamma_0 \in B^3\) such that \(\Psi(\gamma_0)=0\). By triangular inequality, \(\Psi(B^3) \subset \overline{B^3}\):
-\begin{equation*}
-	\frac{1}{\int_\Sigma \vp_1} \left| \int_\Sigma (\gamma \circ \Phi)\vp_1 \right| \le \frac{1}{\int_\Sigma \vp_1} \int_\Sigma |\gamma \circ \Phi| \vp_1 = 1
-\end{equation*}
-By \eqref{eq: Hersch - key prop for extension to boundary}, as \(\gamma \to u \in \de B^3\)
-\[
-	\int_\Sigma (\gamma \circ \Phi)\vp_1 \to \left(\int_\Sigma \vp_1\right) u,
-\]
-so there exists a unique continuous extension \(\Psi \in C^0(\overline{B^3}, \overline{B^3})\) such that \(\Psi|_{\de B^3} = \Id_{B^3}\). We claim that \(\Psi\) is surjective, and in particular exists \(\gamma_0 \in G\) such that \(\Psi(\gamma_0)=0\). Indeed, we can argue as in the classical proof of Brouwer fixed point theorem. We know that there is no retraction of \(\overline{B^3}\) on its boundary \(\de B^3\) (for example, because the homology group \(H_2(\de B^3) \cong \Z\) cannot be isomorphic to any subgroup of \(H_2(\overline{B^3})=0\)). Suppose by contradiction that there exists \(x_0 \in B^3 \setminus \Psi(\overline{B^3})\). Then we can define a retraction \(r \colon \overline{B^3} \to \de B^3 \) of \(\overline{B^3}\) on its boundary by letting \(r(x)\) be the intersection point between \(\de B^3\) and the half line starting from \(x_0\) and passing through \(\Psi(x)\):
-	\[
-		r(x) = x_0 + \lambda(x)(x-x_0),
-	\]
-where \(\lambda(x) \in (0,1]\) is such that \(|r(x)|=1\). This is a contradiction, so \(\Psi\) is surjective.
-
-Basically, we have proved the following.
 \begin{lemma}[Hersch's balancing trick]\label{lem: Hersch trick}
-	Let \(\Sigma^2 \subset (M^3,g)\) be a closed Riemann surface and \(\vp \in L^1(\Sigma)\) a function with non zero average. Then there always exists a branched conformal map \(\Phi \colon (\Sigma,g) \to (\Sp^2,g_0)\) having degree bounded by the genus of \(\Sigma\) as in \eqref{eq: Riemann-Roch bounds on the degree} and such that 
+	Let \(\Sigma^2 \subset (M^3,g)\) be a closed oriented surface and a map \(\Phi \colon (\Sigma,g) \to (\Sp^2,g_{\Sp^2})\). Then there exists a conformal diffeomorphism \(\gamma \in \mathrm{Conf}(\Sp^2,g_{\Sp^2})\) such that 
 	\begin{equation}\label{eq: x_i orthogonal to phi_1}
-		\int_\Sigma (x^i \circ \Phi) \vp = 0
+		\int_\Sigma (x^i \circ \gamma \circ \Phi) \ \dif \sigma = 0
 	\end{equation}
 	for each \(i=1,2,3\), where \(x^i\) is the restriction to \(\Sp^2 \subset \R^3\) of the \(i\)-th coordinate of \(\R^3\).
 \end{lemma}
 
+\begin{proof}[Proof of Theorem~\ref{thm: Christodoulou-Yau for higher genus}]
+    Let \(\Phi \colon (\Sigma,g) \to (\Sp^2,g_{\Sp^2})\) as in Theorem~\ref{thm: corollary of Brill-Noether}. By Lemma~\ref{lem: Hersch trick}, up to consider \(\gamma \circ \Phi\) for some conformal diffeomorphism \(\gamma \in \mathrm{Conf}(\Sp^2,g_{\Sp^2})\), we can assume that 
+    \begin{equation*}%\label{eq: x_i orthogonal to phi_1}
+		\int_\Sigma (x^i \circ \Phi) \ \dif \sigma = 0.
+	\end{equation*}
+    Therefore we can use the CMC-stability inequality on each function \(x^i \circ \Phi\)
+    \begin{equation*}%\label{eq: CMC-stability}
+        \int_\Sigma |\nabla_g (x^i \circ \Phi)|^2 \dif \sigma \ge \int_\Sigma \left[ |h|^2 + \Ric^M(\nu,\nu)\right](x^i \circ \Phi)^2 \dif \sigma .
+    \end{equation*}
+    Observe that since \(\Phi\) has value on the unit sphere of \(\R^3\),
+    \begin{equation}\label{eq: sum (xi.Phi)^2=1}
+	   \sum_{i=1}^3 (x^i \circ \Phi)^2=1,
+    \end{equation}
+    thus summing over \(i\) the previous inequality we get
+    \begin{equation}\label{eq: CMC-stability}
+        \sum_{i=1}^3\int_\Sigma |\nabla_g (x^i \circ \Phi)|^2 \dif \sigma \ge \int_\Sigma \left[ |h|^2 + \Ric^M(\nu,\nu)\right] \ \dif \sigma .
+    \end{equation}
+    
+    Now we want to rewrite both sides of the inequality.
 
-\begin{proof}[Proof of Theorem\ref{thm: Christodoulou-Yau for higher genus}]
-    Take \(\Phi \colon \Sigma \to \Sp^2\) as in Hersch's trick~\ref{lem: Hersch trick}. Recall that it holds
-    \[
-        \sum_{i=1}^3 \int_\Sigma |\nabla_\Sigma (x^i \circ \Phi)|^2 = 8 \pi \deg(\Phi).
-    \]
-    Using the volume-preserving stability inequality
-    \[
-        \int_\Sigma |\nabla_\Sigma (x^i \circ \Phi)|^2 \ge \int_\Sigma \left[ |h|^2 + \Ric^M(\nu,\nu)\right]|(x^i \circ \Phi)^2.
-    \]
-    Now we perform the so called ‘‘Schoen-Yau rearrangement trick'': using the twice contracted Gauss equation,
+    First consider the left hand side.
+
+    \begin{claim} \label{claim: energy and conformal diffeo}
+    For any function \(u \in C^\infty(\Sp^2)\),
+        \[
+            \int_\Sigma |\nabla_g(u \circ \Phi)|^2_{g} \dif \sigma_g = \deg(\Phi)\int_{\Sp^2} |\nabla_{g_{\Sp^2}} u|^2_{g_{\Sp^2}} \dif \sigma_{\Sp^2}.
+        \]
+    \end{claim}
+    \begin{proof}[Proof of Claim~\ref{claim: energy and conformal diffeo}]
+        By definition of degree, 
+        \[
+            \int_\Sigma |\nabla_{\Phi^*g_{\Sp^2}}(u \circ \Phi)|^2_{\Phi^*g_{\Sp^2}} \dif \sigma_{\Phi^*g_{\Sp^2}} = \deg(\Phi)\int_{\Sp^2} |\nabla_{g_{\Sp^2}} u|^2_{g_{\Sp^2}} \dif \sigma_{\Sp^2}.
+        \]
+        Since \(\Phi\) is conformal away from a finite set \(S\subset \Sp^2\), there is a smooth function \(\lambda \colon \Sigma\setminus \Gamma \to \R\setminus\{0\}\), where \(\Gamma=\Phi^{-1}(S)\), such that
+        \[
+            g = \lambda^2\Phi^* g_{\Sp^2} \qquad \text{on }\Sigma \setminus \Gamma.
+        \]
+        To prove the claim, it's enough to show that
+        \begin{equation}\label{eq: Riemannian area element under conformal changes}
+            \dif \sigma_g = \lambda^2 \dif \sigma_{\Phi^*g_{\Sp^2}}
+        \end{equation}
+        and that for any \(v \in C^\infty(\Sigma \setminus \Gamma)\)
+        \begin{equation}\label{eq: gradient under conformal changes}
+            |\nabla_g v|^2_g = \lambda^{-2}|\nabla_{\Phi^*g_{\Sp^2}} v |^2_{\Phi^*g_{\Sp^2}}.
+        \end{equation}
+
+        Let's prove \eqref{eq: Riemannian area element under conformal changes}. Fix some coordinates \((U,x^i)\) on \(\Sigma \setminus \Gamma\) and write \(g= g_{ij} \dif x^i \otimes \dif x^j\) and \(\Phi^*g_{\Sp^2} = \widetilde{g}_{ij}\dif x^i \otimes \dif x^j\). Then
+        \[
+            g_{ij} = \lambda^2 \widetilde{g}_{ij}.
+        \]
+        so
+        \begin{align*}
+            \dif \sigma_{g} &= \sqrt{\det(g_{ij})} \ \dif x^1 \wedge \dif x^2\\
+            &= \sqrt{\det(\lambda^2\widetilde{g}_{ij})} \ \dif x^1 \wedge \dif x^2\\
+            &= \lambda^2 \sqrt{\det(\widetilde{g}_{ij})} \ \dif x^1 \wedge \dif x^2 = \lambda^2 \dif \sigma_{\Phi^*g_{\Sp^2}}.
+        \end{align*}
+
+        Now let's prove \eqref{eq: gradient under conformal changes}. Fix coordinates as above and observe that
+        \[
+            g^{ij} = \lambda^{-2} \widetilde{g}^{ij}.
+        \]
+        Recall that
+        \[
+            |\nabla_g u|_g^2 = g_{ij}(\nabla_g u)^i (\nabla_g u)^j = g_{ij}g^{ik}g^{j\ell}\frac{\de u}{\de x^k}\frac{\de u}{\de x^\ell},
+        \] 
+        and similarly
+        \[
+            |\nabla_{\Phi^*g_{\Sp^2}} u|_{\Phi^*g_{\Sp^2}}^2 = \widetilde{g}_{ij}\widetilde{g}^{ik}\widetilde{g}^{j\ell}\frac{\de u}{\de x^k}\frac{\de u}{\de x^\ell} = \lambda^{-2} g_{ij}g^{ik}g^{j\ell}\frac{\de u}{\de x^k}\frac{\de u}{\de x^\ell}.
+        \]
+        Therefore
+        \[
+            |\nabla_g u|^2_{g} = \lambda^{-2} |\nabla_{\Phi^*g_{\Sp^2}} u|_{\Phi^*g_{\Sp^2}}^2.
+        \]
+
+        This completes the proof of the claim. \qedhere
+    \end{proof}
+
+    Using Claim~\ref{claim: energy and conformal diffeo}, the left hand side of \eqref{eq: CMC-stability} becomes
+    \begin{align}\label{eq: energy computation}
+        \sum_{i=1}^3\int_\Sigma |\nabla_g (x^i \circ \Phi)|^2 \dif \sigma &= \deg(\Phi)\int_{\Sp^2} \sum_{i=1}^3 |\nabla_{g_{\Sp^2}} x^i|^2_{g_{\Sp^2}} \dif \sigma_{\Sp^2} \nonumber \\
+        &= \deg(\Phi)\int_{\Sp^2} \sum_{i=1}^3 \left|e^i-(e^i\cdot x)x\right|^2_{g_{\R^3}} \dif \sigma_{\Sp^2}(x) \nonumber\\
+        &= \deg(\Phi)\int_{\Sp^2} 2 \ \dif \sigma_{\Sp^2} \nonumber\\
+        &= 8\pi \deg(\Phi).
+    \end{align}
+
+    Now let us rearrange the right hand side of \eqref{eq: CMC-stability}. Using the twice contracted Gauss equation,
     \begin{align*}
         |h|^2 + \Ric(\nu,\nu) &= |h|^2 + \frac{1}{2}[R -R^\Sigma + H^2-|h|^2]\\
         &= \frac{1}{2}|h|^2 + \frac{1}{2}R -\frac{1}{2}R^\Sigma + \frac{1}{2}H^2 \\
         &=\frac{1}{2}\left(|h^\circ|^2+R\right) + \frac{3}{4}H^2 -\frac{1}{2}R^\Sigma.
     \end{align*}
-    Substituting
+    Using this computation and \eqref{eq: energy computation}, we can rewrite \eqref{eq: CMC-stability} as
+    \begin{align*}
+        8\pi \deg(\Phi) &= \int_\Sigma \frac{1}{2}\left(|h^\circ|^2+R\right) + \frac{3}{4}H^2 -\frac{1}{2}R^\Sigma \ \dif \sigma.
+    \end{align*}
+    By Gauss-Bonnet theorem
     \[
-        \int_\Sigma |\nabla_\Sigma (x^i \circ \Phi)|^2 \ge \int_\Sigma \left[ \frac{(|h^\circ|^2+R)}{2} + \frac{3}{4}H^2 -\frac{R^\Sigma}{2}\right]|(x^i \circ \Phi)^2,
-    \]
-    and summing over \(i\),
-    \[
-        8\pi \deg(\Phi) \ge \int_\Sigma  \frac{(|h^\circ|^2+R)}{2} + \frac{3}{4}H^2 -\frac{R^\Sigma}{2}.
-    \]
-    Recall that by Gauss-Bonnet theorem
-    \[
-        \int_\Sigma \frac{R^\Sigma}{2} = 2\pi \chi(\Sigma) = 2\pi(2-2k)= 4\pi-4k\pi.
+        \int_\Sigma \frac{R^\Sigma}{2} \ \dif \sigma = 2\pi \chi(\Sigma) = 2\pi(2-2k)= 4\pi-4k\pi.
     \]
     Thus 
     \begin{align*}
-        \frac{1}{2}\int_\Sigma (|h^\circ|^2+R) \le 8\pi \deg(\Phi) +4\pi-4k\pi - \frac{3}{4}H^2|\Sigma|. 
+        \frac{1}{2}\int_\Sigma (|h^\circ|^2+R) \ \dif \sigma \le 8\pi \deg(\Phi) +4\pi-4k\pi - \frac{3}{4}H^2|\Sigma|. 
     \end{align*}
     Assume that \(k\) is even. Then \(\deg(\Phi) \le 1+ k/2\), so
     \begin{align*}
-        \frac{1}{2}\int_\Sigma (|h^\circ|^2+R) &\le 8\pi \deg(\Phi) +4\pi-4k\pi - \frac{3}{4}H^2|\Sigma|\\
+        \frac{1}{2}\int_\Sigma (|h^\circ|^2+R) \ \dif \sigma&\le 8\pi \deg(\Phi) +4\pi-4k\pi - \frac{3}{4}H^2|\Sigma|\\
         &\le 8\pi +4k\pi +4\pi -4k\pi -\frac{3}{4} H^2|\Sigma|\\
         &= 12\pi -\frac{3}{4}H^2|\Sigma|.
     \end{align*}
@@ -363,43 +326,136 @@ Basically, we have proved the following.
 
     Analogously, if \(k\) is odd we have the upper bound \(\deg(\Phi) \le 3/2 + k/2\), so
     \begin{align*}
-        \frac{1}{2}\int_\Sigma (|h^\circ|^2+R) &\le 8\pi \deg(\Phi) +4\pi-4k\pi - \frac{3}{4}H^2|\Sigma|\\
+        \frac{1}{2}\int_\Sigma (|h^\circ|^2+R) \ \dif \sigma &\le 8\pi \deg(\Phi) +4\pi-4k\pi - \frac{3}{4}H^2|\Sigma|\\
         &\le 16\pi -\frac{3}{4}H^2|\Sigma|.
     \end{align*}
     Then again multiply by \(4/3\).
 \end{proof}
 
+
+\begin{proof}[Proof of Lemma~\ref{lem: Hersch trick}]
+Consider \(\mathrm{Conf}(\Sp^2,g_{\Sp^2})\) of conformal diffeomorphisms of the round sphere. Consider the map
+\[
+    \gamma\colon B^3 \to \mathrm{Conf}(\Sp^2,g_{\Sp^2})
+\]
+defined as follows: \(\gamma_0\) is the identity, while for any other point \(a = r\theta \in B^3\), with \(r \in (0,1)\) and \(\theta\in \Sp^2\), \(\gamma_a\) is the dilation of \(\Sp^2\) fixing the opposite poles \(\theta\) and \(-\theta\) and dilating out from \(-\theta\) by a factor \((1-r)^{-1}\). More precisely, if we denote by \(\pi_{\theta} \colon \Sp^2\setminus\{\theta\} \to \R^2\) the stereographic projection from \(\theta\), then for each \(x \in \Sp^2\)
+\begin{equation*}
+    \gamma_a(x)=\begin{cases}
+		\pi_{\theta}^{-1}\left(\frac{1}{1-r}\pi_{\theta}(x) \right) &x\neq \theta \\
+		\theta & x= \theta.
+	\end{cases}
+\end{equation*}
+
+\begin{figure}[ht]
+    \centering
+        \begin{tikzpicture}
+            %SFERA
+            %linee
+            \draw [thick] (0,0) circle (2);
+            \draw (-2,0) arc (180:360: 2 and 0.55);
+            \draw [dashed] (2,0) arc (0:180: 2 and 0.55);
+            \fill (0,1.8) circle (1.5pt)
+            (0,-1.8) circle (1.5pt)
+            (-1.7,.1) circle (1.5pt)
+            (0,0) circle (1.5pt)
+            (-2.2,-.4) circle (1pt)
+            (-2.2*1.7,-.4*1.7) circle (1pt)
+            (-2.2*1.7*.4,-.4*1.7*.4-1.8*.4+1.8) circle (1.5pt);
+            \draw[dashed] (0, 1.8) -- (-.65,1.15);
+            \draw[dashed] (-1.1,.7)--(-2.2,-.4);
+            \draw[dashed] (0,0) -- (-2.2*1.7,-.4*1.7);
+            \draw[dashed] (-2.2*1.7,-.4*1.7)--(-2.2*1.7*.83,-.4*1.7*.83-1.8*.83+1.8);
+            \draw[dashed] (-2.2*1.7*.67,-.4*1.7*.67-1.8*.67+1.8) -- (-2.2*1.7*.4,-.4*1.7*.4-1.8*.4+1.8);
+            \draw[dashed] (-2.2*1.7*.3,-.4*1.7*.3-1.8*.3+1.8) -- (0, 1.8);
+
+            %PIANO
+            \draw (-5.5,-1.25) -- (5.5,-1.25) -- (2.5,1.25)--(-2.5,1.25)--cycle;
+            
+            %NOMI
+            \node at (0,2.2){\(\theta\)};
+            \node at (0.15,-1.55){\(-\theta\)};
+            \node at (-2.6,-.1){\(\pi_{\theta}(x)\)};
+            \node at (-2.2*1.7-.2,-.4*1.7-0.25) {\(\frac{1}{1-r}\pi_{\theta}(x)\)};
+            \node at (-1.45,0.1){\(x\)};
+            \node at (-2.2*1.7*.4+.55,-.4*1.7*.4-1.8*.4+1.8+.1){\(\gamma_a(x)\)};
+            \node at (0.2,0.1){0};
+            \node at (-1.8,2) {\(\Sp^2\)};
+            \node at (2.8,1.3) {\(\R^2\)};
+    \end{tikzpicture}
+\caption{Construction of \(\gamma_a\).}
+\end{figure}
+    
+Observe that for each \(\theta \in \Sp^2\)
+\begin{equation}\label{eq: Hersch - key prop for extension to boundary}
+	\lim_{a \to \theta}\gamma_a(x) = \theta \qquad \forall x \in \Sp^2\setminus\{-\theta\}.
+\end{equation}
+for each \(x \in \Sp^2\).
+Now consider the map
+\begin{equation*}
+	\Psi \colon B^3 \to \R^3 
+\end{equation*}
+defined by 
+\begin{equation*}
+	\Psi(a) \coloneq \frac{1}{|\Sigma|}\int_\Sigma \gamma_a \circ \Phi \ \dif \sigma = \left( \frac{1}{|\Sigma|}\int_\Sigma x^i \circ \gamma_a \circ \Phi\ \dif \sigma \right)_{i=1,2,3} \qquad \forall a \in B^3
+\end{equation*}
+Clearly \(\Psi\) is a continuous function.
+
+We need to show that there exists \(a_0 \in B^3\) such that \(\Psi(a_0)=0\), because then \(\gamma_{a_0}\) is the required conformal diffeomorphism. By triangular inequality, \(\Psi(B^3) \subset \overline{B^3}\): for any \(a \in B^3\)
+\begin{equation*}
+	\left| \frac{1}{|\Sigma|}\int_\Sigma \gamma_a \circ \Phi\ \dif \sigma \right| \le \frac{1}{|\Sigma|}\int_\Sigma |\gamma_a \circ \Phi| \dif \sigma  = 1.
+\end{equation*}
+By \eqref{eq: Hersch - key prop for extension to boundary}, for any \(\theta \in \Sp^2 = \de B^3\),
+\[
+	\lim_{a \to \theta} \frac{1}{|\Sigma|}\int_\Sigma \gamma_a \circ \Phi \ \dif \sigma =  \theta,
+\]
+so there exists a unique continuous extension \(\Psi \in C^0(\overline{B^3}, \overline{B^3})\) such that \(\Psi|_{\de B^3} = \Id_{B^3}\). 
+To prove that \(0 \in \Psi(B^3)\), we can argue as in the classical proof of Brouwer fixed point theorem. We know that there is no retraction of \(\overline{B^3}\) on its boundary \(\de B^3\) (for example, because the homology group \(H_2(\de B^3) \cong \Z\) cannot be isomorphic to any subgroup of \(H_2(\overline{B^3})=0\)). Suppose by contradiction that \(0 \notin \Psi(\overline{B^3})\). Then we can define a retraction \(r \colon \overline{B^3} \to \de B^3 \) of \(\overline{B^3}\) on its boundary as:
+	\[
+		r(x) = \frac{\Psi(x)}{|\Psi(x)|},
+	\]
+a contradiction, so \(0 \in \Psi(\Sigma)\). This proves the lemma. \qedhere
+\end{proof}
+
 \appendix
 \section{The Brill-Noether theorem}
-A Riemann surface is a compact complex manifold of complex dimension 1, namely a complex curve. They correspond to all orientable compact surfaces: the sphere \(\Sp^2 = \C\Pbb^1\), the torus \(\T^2\) and the tori with multiple holes. The number of holes \(g\) is called \emph{genus}.
+A Riemann surface is a compact complex manifold of complex dimension 1, namely a complex curve. They correspond to all orientable compact surfaces: the sphere \(\Sp^2 = \C\Pbb^1\), the torus \(\T^2\) and the tori with multiple holes. The number of holes \(k\) is called \emph{genus}. 
 
-It holds the following deep theorem.
+Let \(\Sigma_1\) and \(\Sigma_2\) be two Riemann surfaces. A map \(\vp \colon \Sigma_1 \to \Sigma_2\) is holomorphic if on every complex atlas it's holomorphic. Fix two complex charts \((U, z)\) on \(\Sigma_1\) and \((V,w)\) on \(\Sigma_2\), and consider the local representation \(f=w \circ \vp \circ z^{-1} \colon \Omega \to \C\). Since \(f\) is holomorphic, its complex derivative \(f'\colon \Omega \to \C\) is still holomorphic, so it's either constantly 0 or it has a discrete set of zeroes. Moreover, by the Cauchy-Riemann equations, \(f \colon \Omega \to \R^2\) (as a real map) has only regular points and points where the differential vanishes. As a consequence, either \(\vp\) is constant, or it has a discrete set of critical points (and on those points, the differential \(\dif\vp\) vanishes), called \emph{branch points}. 
+
+Now assume that \(\vp\) is not constant and endow both surfaces with a Riemannian metric: \((\Sigma_1,g_1)\) and \((\Sigma_2,g_2)\). Then \(\vp \colon (\Sigma_1,g_1) \to (\Sigma_2,g_2)\) is almost-conformal, i.e. there exists a function \(\lambda \colon \Sigma_1 \setminus \Gamma \to \R\) (that can take the value 0) such that
+\[
+    g_1 = \lambda^2 \vp^*g_2 \qquad \text{on }\Sigma_1\setminus \Gamma,
+\]
+where \(\Gamma\subset \Sigma_1\) is the set of branch points of \(\vp\). 
+
+It holds the following deep theorem (see \cite[Chapter XXI]{ACGH_GeometryAlgebraicCurves}).
 \begin{thm}[Brill-Noether]\label{thm: Brill-Noether}
-    Let \(C\) be a complex curve with genus \(g\). Then there exists a non degenerate map \(\Phi \colon C \to \C\Pbb^r\) of degree \(d\) if and only if
+    Let \(\Sigma\) be a complex curve with genus \(k\). Then there exists a non degenerate\footnote{(A map \(\Phi \colon \Sigma \to \C\Pbb^r\) is \emph{degenerate} if the image is contained in some hyperplane \(\C\Pbb^{r-1}\subset \C\Pbb^r\).} map \(\Phi \colon \Sigma \to \C\Pbb^r\) of degree \(d\) if and only if
     \[
-        \rho(d,r,g) = g-(r+1)(g-d+r) \ge 0.
+        \rho(d,r,k) = k-(r+1)(k-d+r) \ge 0.
     \]
 \end{thm}
-\begin{rmk}
-    This is not the usual formulation of the Brill-Noether theorem. Indeed, \(\rho(d,r,g)\) is a lower bound for the dimension (as a subscheme) of a particular subset of the Picard variety \(\mathrm{Pic}(C)\) of \(C\). When this set is non empty, we can construct such a map \(\Phi\).
-\end{rmk}
-In the special case where \(r=1\), we get that we can find a map \(\Phi\) of degree \(d\) if and only if
+
+\begin{proof}[Proof of Theorem~\ref{thm: corollary of Brill-Noether}]
+With the notation above, fix \(r=1\). Using the Brill-Noether Theorem, we can find the required map \(\Phi\) of degree \(d\) if and only if
 \[
-    0 \le \rho(d,1,g) = g-2(g-d+1) = 2d - (g+2),
+    0 \le \rho(d,1,k) = k-2(k-d+1) = 2d - (k+2),
 \]
 that is
 \[
-    d \ge 1 + \frac{g}{2}.
+    d \ge 1 + \frac{k}{2}.
 \]
 
 Taking the \(d\) as the least possible value, we get
 \[
 d = \begin{cases}
-    1 + g/2 &\text{if }g\text{ is even},\\
-    3/2 + g/2 &\text{if }g\text{ is odd}.
+    1 + k/2 &\text{if }k\text{ is even},\\
+    3/2 + k/2 &\text{if }k\text{ is odd}.
 \end{cases}
 \]
+Since \(\Phi \colon \Sigma \to \C\Pbb^1 = \Sp^2\) is non degenerate, it is not constant, so it has a discrete set of branch points \(\Gamma\). Since \(\Sigma\) is compact, \(\Gamma\) is finite. On \(\Sigma \setminus \Gamma\), \(\Phi\) is a local diffeomorphism, so \(\Phi \colon \Sigma \setminus \Gamma \to \Sp^2 \setminus \Phi(\Gamma)\) is a covering of degree equal to the degree of \(\Phi\) as a map. 
 
-
+Finally, since \(\Phi\) is holomorphic, \(\Phi \colon (\Sigma, g) \to (\Sp^2,g_{\Sp^2})\) is almost-conformal, and more precisely it's conformal on \(\Sigma \setminus \Gamma\).
+\end{proof}
 \printbibliography
 \end{document}

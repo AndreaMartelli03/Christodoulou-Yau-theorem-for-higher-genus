@@ -102,7 +102,7 @@
  	\clearfield{note} % Nasconde le note
 }
 \addbibresource{biblio.bib}
-\title{The Christodoulou-Yau theorem for higher genus}
+\title{An application of the Hersch's balancing trick}
 \author{Andrea Martelli}
 \date{May 2025}
 
@@ -113,7 +113,7 @@
 
 \section{Introduction}
 
-The following result by D. Christodoulou and S.T. Yau is a classical theorem in Riemannian geometry.
+In these notes, we are going to use the Hersch's balancing trick to extend the following classical result by D. Christodoulou and S.T. Yau.
 \begin{thm}[Christodoulou, Yau]\label{thm: Christodoulou-Yau}
     Let \((M^3,g)\) be a Riemannian 3-manifold and let \(\Sigma^2 \subset (M^3,g)\) be volume-preserving stable CMC sphere. Then
     \begin{equation}\label{eq: CY eq}
@@ -138,9 +138,9 @@ The charts like \((M\setminus K, \vp^{-1})\) are called \emph{asymptotically fla
 \[
     m_{\mathrm{ADM}}(M,g) = \sup_{r>R} m_{\mathrm{Haw}}(\Sigma_r).
 \]
-Given this facts, as a corollary of Christodoulou-Yau theorem we get the positive mass theorem. 
+Given this facts, as a corollary of Christodoulou-Yau theorem we get the Riemannian positive mass theorem. 
 
-\begin{cor}[Positive mass theorem]
+\begin{cor}[Riemannian positive mass theorem]
     Let \((M^3,g)\) be an asymptotically flat Riemannian 3-manifold with non negative scalar curvature \(R_g \ge 0\). Then the ADM mass is non negative.
 \end{cor}
 
@@ -433,7 +433,7 @@ so for some \(t \in (0,\pi/2)\) close to \(0\) or to \(\pi/2\),
 
 Actually, it's not hard to prove that, for every \(t \in (0,\pi/2)\), \(\Sigma_t \subset (\Sp^3,g_{\Sp^3})\) is not CMC-stable. From the second variation formula, for any \(u \in C^\infty(\Sigma_t)\) and associated variation variation \(\Sigma_{t,s} = \{\exp_p(tu(p)\nu_t(p) \ \colon \ p \in \Sigma_t\}\),
 \begin{align*}
-    \left(\frac{\dif^2}{\dif s^2}\right)_{s=0} |\Sigma_{t,s}| &= \int_{\Sigma_t} |\nabla_{\Sigma_t} u|^2 - (\Ric^{\Sp^3}(\nu_t,\nu_t) + |h_t|^2 - H_t^2)u^2 \ \dif \sigma_t 
+    \left(\frac{\dif^2}{\dif s^2}\right)_{s=0} |\Sigma_{t,s}| &= \int_{\Sigma_t} |\nabla_{\Sigma_t} u|^2 - (\Ric^{\Sp^3}(\nu_t,\nu_t) + |h_t|^2 - H_t^2)u^2 \ \dif \sigma_t \\
     &= \int_{\Sigma_t} |\nabla_{\Sigma_t} u|^2 -4u^2 \ \dif \sigma_t\\
     &= -\int_{\Sigma_t} uL_t u \ \dif \sigma
 \end{align*}

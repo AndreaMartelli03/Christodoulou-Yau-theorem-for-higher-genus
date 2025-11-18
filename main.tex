@@ -102,7 +102,7 @@
  	\clearfield{note} % Nasconde le note
 }
 \addbibresource{biblio.bib}
-\title{An application of the Hersch's balancing trick}
+\title{An application of Hersch's balancing trick}
 \author{Andrea Martelli}
 \date{May 2025}
 
@@ -236,7 +236,7 @@ As an immediate consequence of Theorem~\ref{thm: Christodoulou-Yau for higher ge
     a contradiction. If \(k\) is even, in the same way we can get \(8\pi^2 \le 16\pi\), a contradiction. \qedhere
 \end{proof}
 \begin{proof}[Proof of Theorem~\ref{thm: Christodoulou-Yau for higher genus}]
-    Let \(\Phi \colon (\Sigma,g) \to (\Sp^2,g_{\Sp^2})\) as in Theorem~\ref{thm: corollary of Brill-Noether}. By Lemma~\ref{lem: Hersch trick}, up to consider \(\gamma \circ \Phi\) for some conformal diffeomorphism \(\gamma \in \mathrm{Conf}(\Sp^2,g_{\Sp^2})\), we can assume that 
+    Let \(\Phi \colon (\Sigma,g) \to (\Sp^2,g_{\Sp^2})\) be a branched conformal map as in Theorem~\ref{thm: corollary of Brill-Noether}. By Lemma~\ref{lem: Hersch trick}, up to consider \(\gamma \circ \Phi\) for some conformal diffeomorphism \(\gamma \in \mathrm{Conf}(\Sp^2,g_{\Sp^2})\), we can assume that 
     \begin{equation*}
 		\int_\Sigma (x^i \circ \Phi) \ \dif \sigma = 0.
 	\end{equation*}
@@ -471,7 +471,7 @@ This proves that \(\Sigma_t\) is not CMC-stable for all \(t \in (0,\pi/2)\).
 
 In general, the existence of CMC-stable surfaces with positive genus is obstructed by the assumption of positive curvature.
 \begin{prop}
-    Let \((M^3,g)\) be a Riemannian 3-manifold and let \(\Sigma^2 \subset (M^3,g)\) be volume-preserving stable CMC surface of genus \(k\). Then
+    Let \((M^3,g)\) be a Riemannian 3-manifold and let \(\Sigma^2 \subset M^3\) be volume-preserving stable CMC surface of genus \(k\). Then
     \begin{itemize}
         \item if \(\Ric_g \ge 0\), then \(k \le 3\);
         \item if \(\Ric_g >0\), then \(k \ne 2\).
@@ -663,7 +663,7 @@ The complex structure implies strong geometric consequences. Indeed, it's not ha
 
 It holds the following deep theorem (see \cite[Chapter XXI]{ACGH_GeometryAlgebraicCurves}).
 \begin{thm}[Brill-Noether]\label{thm: Brill-Noether}
-    Let \(\Sigma\) be a complex curve with genus \(k\). Then there exists a non degenerate\footnote{(A map \(\Phi \colon \Sigma \to \C\Pbb^r\) is \emph{degenerate} if the image is contained in some hyperplane \(\C\Pbb^{r-1}\subset \C\Pbb^r\).} map \(\Phi \colon \Sigma \to \C\Pbb^r\) of degree \(d\) if and only if
+    Let \(\Sigma\) be a complex curve with genus \(k\). Then there exists a non degenerate\footnote{A map \(\Phi \colon \Sigma \to \C\Pbb^r\) is \emph{degenerate} if the image is contained in some hyperplane \(\C\Pbb^{r-1}\subset \C\Pbb^r\).} map \(\Phi \colon \Sigma \to \C\Pbb^r\) of degree \(d\) if and only if
     \[
         \rho(d,r,k) = k-(r+1)(k-d+r) \ge 0.
     \]
@@ -690,5 +690,7 @@ Since \(\Phi \colon \Sigma \to \C\Pbb^1 = \Sp^2\) is non degenerate, it is not c
 
 Finally, since \(\Phi\) is holomorphic, \(\Phi \colon (\Sigma, g) \to (\Sp^2,g_{\Sp^2})\) is almost-conformal, and more precisely it's conformal on \(\Sigma \setminus \Gamma\).
 \end{proof}
+
+\newpage
 \printbibliography
 \end{document}
